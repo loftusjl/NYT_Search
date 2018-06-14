@@ -20,18 +20,19 @@ $(document).ready(function () {
       'begin_date': startYear,
       'end_date': endYear
     });
-    console.log(url)
+    // console.log(url)
     $.ajax ({
       url: url,
       method: "GET"
     }).then(function (data) {
-      console.log(data);
+      // console.log(data);
       var results = data.response
-      for (var i = 0; i < results.length; i++) {
+      for (var i = 0; i < results.docs.length; i++) {
+        console.log(results.docs[i]);
         var newDiv = $('<div>')
         var header = $('<h1>')
   
-        var author = $('<p>').text('Author: ' + results[i].byline.original)
+        var author = $('<p>').text(`Author: ${results.docs[i].byline.original}`)
         newDiv.append(header)
         newDiv.append(author)
         $('#articlesContainer').append(newDiv)
